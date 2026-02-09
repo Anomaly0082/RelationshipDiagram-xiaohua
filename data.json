@@ -15,7 +15,7 @@
         "x": 550,
         "y": 300,
         "fill": "#c0392b",
-        "size": 150,
+        "size": [120,152.61],
         "labelText": "萧华",
         "labelFontSize": 16,
         "labelFill": "#c0392b",
@@ -36,7 +36,7 @@
         "x": 300,
         "y": 100,
         "fill": "#e74c3c",
-        "size": 120,
+        "size": [120,150.37],
         "labelText": "毛泽东",
         "labelFontSize": 14,
         "labelFill": "#e74c3c"
@@ -56,7 +56,7 @@
         "x": 800,
         "y": 100,
         "fill": "#3498db",
-        "size": 120,
+        "size": [120,171.29],
         "labelText": "周恩来",
         "labelFontSize": 14,
         "labelFill": "#3498db"
@@ -73,10 +73,10 @@
         "death": "1963年"
       },
       "style": {
-        "x": 200,
-        "y": 400,
+        "x": 185,
+        "y": 440,
         "fill": "#2ecc71",
-        "size": 90,
+        "size": [120,152.00],
         "labelText": "罗荣桓",
         "labelFontSize": 13,
         "labelFill": "#2ecc71"
@@ -94,9 +94,9 @@
       },
       "style": {
         "x": 900,
-        "y": 400,
+        "y": 420,
         "fill": "#9b59b6",
-        "size": 90,
+        "size": [120,168.41],
         "labelText": "陈毅",
         "labelFontSize": 13,
         "labelFill": "#9b59b6"
@@ -116,7 +116,7 @@
         "x": 400,
         "y": 550,
         "fill": "#e67e22",
-        "size": 90,
+        "size": [120,148.97],
         "labelText": "林彪",
         "labelFontSize": 13,
         "labelFill": "#e67e22"
@@ -136,7 +136,7 @@
         "x": 700,
         "y": 550,
         "fill": "#1abc9c",
-        "size": 90,
+        "size": [120,155.73],
         "labelText": "刘亚楼",
         "labelFontSize": 13,
         "labelFill": "#1abc9c"
@@ -156,7 +156,7 @@
         "x": 100,
         "y": 270,
         "fill": "#e67e22",
-        "size": 100,
+        "size": [120,120.00],
         "labelText": "刘伯承",
         "labelFontSize": 13,
         "labelFill": "#e67e22"
@@ -176,7 +176,7 @@
         "x": 1000,
         "y": 250,
         "fill": "#e67e22",
-        "size": 100,
+        "size": [120,150.00],
         "labelText": "聂荣臻",
         "labelFontSize": 13,
         "labelFill": "#e67e22"

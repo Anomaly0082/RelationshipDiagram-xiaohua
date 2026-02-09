@@ -21,16 +21,7 @@ function initGraph() {
             type: 'image',
             style: {
                 src: (d) => d.src || 'https://gw.alipayobjects.com/mdn/rms_6ae20b/afts/img/A*N4ZMS7gHsUIAAAAAAAAAAABkARQnAQ',
-                fill: (d) => d.style?.fill || '#1890ff',
-                size: (d) => d.style?.size || 40,
-                stroke: '#fff',
-                lineWidth: 2,
-                labelText: (d) => d.style?.labelText || d.data?.name,
-                labelFontSize: (d) => d.style?.labelFontSize || 12,
-                labelFill: (d) => d.style?.labelFill || '#333',
-                labelBackgroundFill: 'rgba(255,255,255,0.8)',
-                labelPadding: [4, 8],
-                labelMaxWidth: 100
+                keepAspectRatio: true, // 保持图片原始宽高比
             },
             state: {
                 hover: {
@@ -369,7 +360,6 @@ function showInfo(e) {
     const modal = document.getElementById('infoModal');
     const content = document.getElementById('infoContent');
 
-    console.log('findBY', e.target.id);
     // 从事件对象获取节点数据
     const target = findNodeById(e.target.id);
 
@@ -392,7 +382,7 @@ function showInfo(e) {
         occupation: target.data?.title || '未知',
 
     };
-    console.log(findNodeById(target.id));
+
     // 创建人物简介HTML
     content.innerHTML = `
     <div class="person-profile">
@@ -452,14 +442,36 @@ function showInfo(e) {
       </div>
     </div>
   `;
+    let pictureroute = target.id + '.jpg'
+    document.getElementById('personPhoto').src = pictureroute;
+    console.log(pictureroute);
     modal.style.display = 'block';
+    // 确保元素已渲染后再触发过渡
+    requestAnimationFrame(() => {
+        modal.style.opacity = '1';
+    });
+    //下面这样子适合用来实现多阶段的动画效果
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            const panel = document.querySelector('.info-panel');
+            panel.style.left = '35%';
+            panel.style.width = '40%';
+
+        });
+    }, 300);
+
 }
 
 function hideInfo() {
     const modal = document.getElementById('infoModal');
-    modal.classList.add('fade-out');
+    modal.style.opacity = '0';
     setTimeout(() => {
-        modal.style.display = 'none';
-        modal.classList.remove('fade-out');
-    }, 700);
+        requestAnimationFrame(() => {
+            modal.style.display = 'none';
+            const panel = document.querySelector('.info-panel');
+            panel.style.transform = 'translate(-50%, -50%)'; // 恢复到原始位置
+            panel.style.left = '50%';
+            panel.style.width = '20%';
+        });
+    }, 300);
 }
