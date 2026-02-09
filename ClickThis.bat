@@ -38,7 +38,7 @@ if exist "index.html" (
 )
 
 REM 设置端口
-set PORT=8000
+set PORT=5500
 :port_check
 netstat -ano | findstr ":%PORT%" >nul
 if %errorlevel% equ 0 (
