@@ -320,6 +320,7 @@ function searchPath() {
     if (hasAutoPaint) graph.setAutoPaint(true);
 }
 
+
 function applyPathVisibility(pathNodeSet, pathEdgeSet) {
     if (!graph) return;
     const hasAutoPaint = typeof graph.setAutoPaint === 'function';
@@ -359,6 +360,7 @@ function applyPathVisibility(pathNodeSet, pathEdgeSet) {
     if (hasAutoPaint) graph.setAutoPaint(true);
 }
 
+/* 人物信息弹窗显示函数 */
 function showInfo(e) {
     if (!e.target) {
         return;
@@ -438,36 +440,14 @@ function showInfo(e) {
           <p class="detail-description">${personData.achievement}</p>
         </div>` : ''}
         
-        <!-- 显示样式信息 -->
-        ${target.style ? `
-        <div class="detail-row">
-          <span class="detail-label">节点样式(这部分是方便调试,后面会删掉)：</span>
-          <div class="all-attributes">
-            <div class="attr-item">
-              <span class="attr-name">位置坐标：</span>
-              <span class="attr-value">X: ${target.style.x || 0}, Y: ${target.style.y || 0}</span>
-            </div>
-            ${target.style.size ? `
-            <div class="attr-item">
-              <span class="attr-name">节点大小：</span>
-              <span class="attr-value">${target.style.size}像素</span>
-            </div>` : ''}
-            ${target.style.fill ? `
-            <div class="attr-item">
-              <span class="attr-name">颜色：</span>
-              <span class="attr-value" style="color:${target.style.fill}">${target.style.fill}</span>
-            </div>` : ''}
-          </div>
-        </div>` : ''}
-      </div>
       
       <!-- 底部信息 -->
       <div class="person-footer">
         <div class="info-time">
-          <small>点击时间：${new Date().toLocaleString()}</small>
+          <small>时间：${new Date().toLocaleString()}</small>
         </div>
         <div class="info-source">
-          <small>信息来源：G6节点数据对象</small>
+          <small>信息来源自网络</small>
         </div>
       </div>
     </div>
@@ -476,5 +456,10 @@ function showInfo(e) {
 }
 
 function hideInfo() {
-    document.getElementById('infoModal').style.display = 'none';
+    const modal = document.getElementById('infoModal');
+    modal.classList.add('fade-out');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('fade-out');
+    }, 700);
 }

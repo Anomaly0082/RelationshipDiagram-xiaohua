@@ -8,16 +8,18 @@
 </head>
 
 <body>
-
   <h1 class="title">萧华将军人物关系图谱</h1>
   <!-- 红色资源链接 -->
   <div style="text-align:center;margin:0 0 5px 0;">
-    <a href="http://www.xghbzx.cn/jjysy" target="_blank"
-      style="color:#c0392b;font-size:16px;text-decoration:none;padding:6px 12px;border:1px solid #c0392b;border-radius:4px;">
+    <a href="http://www.xghbzx.cn/jjysy" target="_blank">
       兴国红色资源数字化官网
     </a>
   </div>
+  <br>
+
+  <!-- 功能按钮部分和图谱容器 -->
   <div class="container">
+    <!-- 功能按钮部分 -->
     <div class="func-box">
       <input type="text" id="searchNode" placeholder="输入人物姓名筛选">
       <button onclick="searchNode()">筛选人物</button>
@@ -27,14 +29,15 @@
       <button onclick="searchPath()">查询关系路径</button>
       <button onclick="location.reload()">重置图谱</button>
     </div>
+    <!-- 图谱容器 -->
     <div id="graph-container"></div>
   </div>
 
-  <div class="popup" id="infoPopup"></div>
+
   <!-- 下面是弹窗内容 -->
   <div id="infoModal" class="modal-overlay">
     <div class="info-panel">
-      <h2>信息标题</h2>
+      <h2>人物简介</h2><br>
       <div id="infoContent">
         <!-- 动态内容会在这里 -->
       </div>
@@ -65,10 +68,14 @@
 
     let graphData = {};
     let promise = fetch('data.json')
+    /* 从JSON文件加载数据 */
     promise = promise.then(response => response.json())
+    /* 处理加载的数据 */
     promise = promise.then(data => {
       graphData = data;
+      /* 对图数据进行归一化处理，确保所有节点和边都有唯一的ID */
       normalizeGraphIds(graphData);
+      /* 初始化图谱 */
       initGraph();
     })
     promise.catch(error => console.error('Error:', error));
@@ -77,15 +84,12 @@
     let lastPathNodeIds = new Set();
     let lastPathEdgeIds = new Set();
 
-
-
     // 添加回车键支持
     document.getElementById('searchNode').addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         searchNode();
       }
     });
-
 
 
     // 点击遮罩层关闭
