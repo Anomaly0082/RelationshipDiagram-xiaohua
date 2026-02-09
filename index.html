@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>萧华将军人物关系图谱</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <h1 class="title">萧华将军人物关系图谱</h1>
+  <!-- 红色资源链接 -->
+  <div style="text-align:center;margin:0 0 5px 0;">
+    <a href="http://www.xghbzx.cn/jjysy" target="_blank"
+      style="color:#c0392b;font-size:16px;text-decoration:none;padding:6px 12px;border:1px solid #c0392b;border-radius:4px;">
+      兴国红色资源数字化官网
+    </a>
+  </div>
+  <div class="container">
+    <div class="func-box">
+      <input type="text" id="searchNode" placeholder="输入人物姓名筛选">
+      <button onclick="searchNode()">筛选人物</button>
+      <br>
+      <input type="text" id="startNode" placeholder="起点人物">
+      <input type="text" id="endNode" placeholder="终点人物">
+      <button onclick="searchPath()">查询关系路径</button>
+      <button onclick="location.reload()">重置图谱</button>
+    </div>
+    <div id="graph-container"></div>
+  </div>
+
+  <div class="popup" id="infoPopup"></div>
+  <!-- 下面是弹窗内容 -->
+  <div id="infoModal" class="modal-overlay">
+    <div class="info-panel">
+      <h2>信息标题</h2>
+      <div id="infoContent">
+        <!-- 动态内容会在这里 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 背景音乐播放器 -->
+  <div class="music-player">
+    <audio id="bgMusic" loop>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <button id="musicToggle" class="music-btn">
+      <i class="fas fa-music"></i>
+      <span class="music-text">背景音乐</span>
+      <i class="fas fa-play"></i>
+    </button>
+    <div class="volume-control">
+      <i class="fas fa-volume-up"></i>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+    </div>
+  </div>
+
+  <!-- 引入G6库（使用正确的CDN链接） -->
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g6/5.0.0/dist/g6.min.js"></script>
+  <script src="fuc.js"></script>
+  <script>
+    // 示例数据 - 包含多个节点和关系
+
+    let graphData = {};
+    let promise = fetch('data.json')
+    promise = promise.then(response => response.json())
+    promise = promise.then(data => {
+      graphData = data;
+      normalizeGraphIds(graphData);
+      initGraph();
+    })
+    promise.catch(error => console.error('Error:', error));
+
+    let graph = null;
+    let lastPathNodeIds = new Set();
+    let lastPathEdgeIds = new Set();
+
+
+
+    // 添加回车键支持
+    document.getElementById('searchNode').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        searchNode();
+      }
+    });
+
+
+
+    // 点击遮罩层关闭
+    document.getElementById('infoModal').addEventListener('click', function (e) {
+      if (e.target === this) hideInfo();
+    });
+
+
+    // 背景音乐控制
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+
+    // 设置初始音量
+    bgMusic.volume = volumeSlider.value;
+
+    // 切换播放/暂停
+    musicToggle.addEventListener('click', function () {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        this.classList.add('playing');
+      } else {
+        bgMusic.pause();
+        this.classList.remove('playing');
+      }
+    });
+
+    // 音量控制
+    volumeSlider.addEventListener('input', function () {
+      bgMusic.volume = this.value;
+    });
+
+    // 保存音量设置到本地存储
+    volumeSlider.addEventListener('change', function () {
+      localStorage.setItem('bgMusicVolume', this.value);
+    });
+
+    // 恢复音量设置
+    // 修改背景音乐控制部分
+    window.addEventListener('load', function () {
+      // 恢复音量设置
+      const savedVolume = localStorage.getItem('bgMusicVolume') || 0.5;
+      if (savedVolume) {
+        volumeSlider.value = savedVolume;
+        bgMusic.volume = savedVolume;
+      }
+
+      // 尝试自动播放（可能失败）
+      bgMusic.play().then(() => {
+        musicToggle.classList.add('playing');
+        console.log('音乐自动播放成功');
+      }).catch(error => {
+        console.log('自动播放被阻止:', error);
+        // 显示提示
+        showAutoPlayTip();
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

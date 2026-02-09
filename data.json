@@ -1,0 +1,287 @@
+{
+  "nodes": [
+    {
+      "id": "萧华",
+      "src": "萧华.jpg",
+      "data": {
+        "name": "萧华",
+        "title": "开国上将",
+        "description": "中国人民解放军开国上将，政治工作领导者",
+        "birth": "1916年",
+        "death": "1985年",
+        "achievement": "参与长征，解放战争重要指挥员"
+      },
+      "style": {
+        "x": 550,
+        "y": 300,
+        "fill": "#c0392b",
+        "size": 150,
+        "labelText": "萧华",
+        "labelFontSize": 16,
+        "labelFill": "#c0392b",
+        "labelFontWeight": "bold"
+      }
+    },
+    {
+      "id": "毛泽东",
+      "src": "毛泽东.jpg",
+      "data": {
+        "name": "毛泽东",
+        "title": "伟大领袖",
+        "description": "中国共产党、中国人民解放军、中华人民共和国的主要创立者",
+        "birth": "1893年",
+        "death": "1976年"
+      },
+      "style": {
+        "x": 300,
+        "y": 100,
+        "fill": "#e74c3c",
+        "size": 120,
+        "labelText": "毛泽东",
+        "labelFontSize": 14,
+        "labelFill": "#e74c3c"
+      }
+    },
+    {
+      "id": "周恩来",
+      "src": "周恩来.jpg",
+      "data": {
+        "name": "周恩来",
+        "title": "总理",
+        "description": "中国共产党和中华人民共和国的主要领导人之一",
+        "birth": "1898年",
+        "death": "1976年"
+      },
+      "style": {
+        "x": 800,
+        "y": 100,
+        "fill": "#3498db",
+        "size": 120,
+        "labelText": "周恩来",
+        "labelFontSize": 14,
+        "labelFill": "#3498db"
+      }
+    },
+    {
+      "id": "罗荣桓",
+      "src": "罗荣桓.jpg",
+      "data": {
+        "name": "罗荣桓",
+        "title": "元帅",
+        "description": "中国人民解放军政治工作的重要领导者",
+        "birth": "1902年",
+        "death": "1963年"
+      },
+      "style": {
+        "x": 200,
+        "y": 400,
+        "fill": "#2ecc71",
+        "size": 90,
+        "labelText": "罗荣桓",
+        "labelFontSize": 13,
+        "labelFill": "#2ecc71"
+      }
+    },
+    {
+      "id": "陈毅",
+      "src": "陈毅.jpg",
+      "data": {
+        "name": "陈毅",
+        "title": "元帅",
+        "description": "中国人民解放军创建人和领导人之一",
+        "birth": "1901年",
+        "death": "1972年"
+      },
+      "style": {
+        "x": 900,
+        "y": 400,
+        "fill": "#9b59b6",
+        "size": 90,
+        "labelText": "陈毅",
+        "labelFontSize": 13,
+        "labelFill": "#9b59b6"
+      }
+    },
+    {
+      "id": "林彪",
+      "src": "林彪.jpg",
+      "data": {
+        "name": "林彪",
+        "title": "元帅",
+        "description": "军事家，曾担任重要职务",
+        "birth": "1907年",
+        "death": "1971年"
+      },
+      "style": {
+        "x": 400,
+        "y": 550,
+        "fill": "#e67e22",
+        "size": 90,
+        "labelText": "林彪",
+        "labelFontSize": 13,
+        "labelFill": "#e67e22"
+      }
+    },
+    {
+      "id": "刘亚楼",
+      "src": "刘亚楼.jpg",
+      "data": {
+        "name": "刘亚楼",
+        "title": "上将",
+        "description": "中国人民解放军空军首任司令员",
+        "birth": "1910年",
+        "death": "1965年"
+      },
+      "style": {
+        "x": 700,
+        "y": 550,
+        "fill": "#1abc9c",
+        "size": 90,
+        "labelText": "刘亚楼",
+        "labelFontSize": 13,
+        "labelFill": "#1abc9c"
+      }
+    },
+    {
+      "id": "刘伯承",
+      "src": "刘伯承.jpg",
+      "data": {
+        "name": "刘伯承",
+        "title": "元帅",
+        "description": "中共中央西南局第二书记",
+        "birth": "1892年",
+        "death": "1986年"
+      },
+      "style": {
+        "x": 100,
+        "y": 270,
+        "fill": "#e67e22",
+        "size": 100,
+        "labelText": "刘伯承",
+        "labelFontSize": 13,
+        "labelFill": "#e67e22"
+      }
+    },
+   {
+      "id": "聂荣臻",
+      "src": "聂荣臻.jpg",
+      "data": {
+        "name": "聂荣臻",
+        "title": "元帅",
+        "description": "中央军委秘书长兼中国人民解放军代总参谋长",
+        "birth": "1899年",
+        "death": "1992年"
+      },
+      "style": {
+        "x": 1000,
+        "y": 250,
+        "fill": "#e67e22",
+        "size": 100,
+        "labelText": "聂荣臻",
+        "labelFontSize": 13,
+        "labelFill": "#e67e22"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "source": "萧华",
+      "target": "毛泽东",
+      "style": {
+        "stroke": "#c0392b",
+        "labelText": "上下级"
+      }
+    },
+    {
+      "id": "edge2",
+      "source": "萧华",
+      "target": "周恩来",
+      "style": {
+        "stroke": "#3498db",
+        "labelText": "上下级"
+      }
+    },
+    {
+      "id": "edge3",
+      "source": "萧华",
+      "target": "罗荣桓",
+      "style": {
+        "stroke": "#2ecc71",
+        "labelText": "战友"
+      }
+    },
+    {
+      "id": "edge4",
+      "source": "萧华",
+      "target": "陈毅",
+      "style": {
+        "stroke": "#9b59b6",
+        "labelText": "战友"
+      }
+    },
+    {
+      "id": "edge5",
+      "source": "萧华",
+      "target": "林彪",
+      "style": {
+        "stroke": "#e67e22",
+        "labelText": "上下级"
+      }
+    },
+    {
+      "id": "edge6",
+      "source": "萧华",
+      "target": "刘亚楼",
+      "style": {
+        "stroke": "#1abc9c",
+        "labelText": "战友"
+      }
+    },
+    {
+      "id": "edge7",
+      "source": "毛泽东",
+      "target": "周恩来",
+      "style": {
+        "stroke": "#95a5a6",
+        "labelText": "同事"
+      }
+    },
+    {
+      "id": "edge8",
+      "source": "罗荣桓",
+      "target": "林彪",
+      "style": {
+        "stroke": "#95a5a6",
+        "labelText": "同事"
+      }
+    },
+    {
+      "id": "edge9",
+      "source": "刘伯承",
+      "target": "毛泽东",
+      "style": {
+        "stroke": "#c0392b",
+        "labelText": "上下级"
+      }
+    },
+    {
+      "id": "edge10",
+      "source": "萧华",
+      "target": "刘伯承",
+      "style": {
+        "stroke": "#95a5a6",
+        "labelText": "战友上下级"
+      }
+    },
+    {
+      "id": "edge11",
+      "source": "萧华",
+      "target": "聂荣臻",
+      "style": {
+        "stroke": "#e67e22",
+        "labelText": "战友上下级"
+      }
+    }
+  ]
+}
