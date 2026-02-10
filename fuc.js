@@ -22,28 +22,6 @@ function initGraph() {
             style: {
                 src: (d) => d.src || 'https://gw.alipayobjects.com/mdn/rms_6ae20b/afts/img/A*N4ZMS7gHsUIAAAAAAAAAAABkARQnAQ',
                 keepAspectRatio: true, // 保持图片原始宽高比
-            },
-            state: {
-                hover: {
-                    fill: '#fff566',
-                    stroke: '#ff4d4f',
-                    lineWidth: 3
-                },
-                selected: {
-                    fill: '#ff4d4f',
-                    stroke: '#cf1322',
-                    lineWidth: 4
-                },
-                pathHighlight: {
-                    stroke: '#f39c12',
-                    lineWidth: 4
-                },
-                pathInactive: {
-                    opacity: 0.2
-                },
-                pathHidden: {
-                    opacity: 0
-                }
             }
         },
         edge: {
@@ -55,31 +33,16 @@ function initGraph() {
                 labelFill: '#666',
                 labelBackgroundFill: 'rgba(255,255,255,0.8)',
                 endArrow: true
-            },
-            state: {
-                pathHighlight: {
-                    stroke: '#f39c12',
-                    lineWidth: 4
-                },
-                pathInactive: {
-                    opacity: 0.2
-                },
-                pathHidden: {
-                    opacity: 0
-                }
             }
         },
         behaviors: [
-            { type: 'drag-canvas', },
+            'drag-canvas',
             'zoom-canvas',
             {
                 type: 'click-select',
                 enable: (event) => ['node'].includes(event.targetType),
-                key: 'click-select-1',
-                degree: 0, // 选中扩散范围
-                state: 'highlight', // 选中的状态
                 onClick: (e) => {//e.target
-                    showInfo(e);
+                    showInfo(e.target.id);
                 }
             },
             {
@@ -90,12 +53,6 @@ function initGraph() {
                 inactiveState: 'inactive', // 未选中节点状态
             }
         ],
-
-        // layout: {
-        //   type: 'force',
-        //   preventOverlap: true,
-        //   linkDistance: 150
-        // }
     });
     graph.render();
 }
@@ -153,19 +110,24 @@ function searchNode() {
         searchInput.focus();
         return;
     }
+    let target = findNodeById(searchText)
+    
+    showInfo(target.id)
+    // const target = findNodeById(searchText);
+    // if (!target) {
+    //     alert(`未找到人物："${searchText}"`);
+    //     return;
+    // }
+    // const node = graph.getNodeData(target.id);
+    // if (node) {
+    //     // 使用 focusElement 正确定位节点，避免坐标偏移问题
+    //     graph.focusElement(target.id, true);
+    //     // 设置选中状态
+    //     graph.setElementState(target.id, 'selected', true);
+    // } else {
+    //     alert('未找到节点: ' + target.id);
+    // }
 
-    const target = findNodeById(searchText);
-    if (!target) {
-        alert(`未找到人物："${searchText}"`);
-        return;
-    }
-    const currentZoom = graph.getZoom();
-    const viewportCenter = graph.getViewportCenter();
-    console.log('视口中心的画布坐标:', viewportCenter);
-    offsetX = viewportCenter[0] - target.style.x;
-    offsetY = viewportCenter[1] - target.style.y;
-    console.log([offsetX, offsetY]);
-    graph.translateBy([offsetX * currentZoom, offsetY * currentZoom]);
 }
 
 function clearPathStates() {
@@ -352,16 +314,20 @@ function applyPathVisibility(pathNodeSet, pathEdgeSet) {
 }
 
 /* 人物信息弹窗显示函数 */
-function showInfo(e) {
+
+function getIdByEvent(e){
     if (!e.target) {
         return;
     }
+    return e.target.id
+}
 
+function showInfo(id) {
     const modal = document.getElementById('infoModal');
     const content = document.getElementById('infoContent');
 
     // 从事件对象获取节点数据
-    const target = findNodeById(e.target.id);
+    const target = findNodeById(id);
 
     // 按照JSON结构提取信息
     const personData = {

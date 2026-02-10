@@ -24,7 +24,7 @@
       <input type="text" id="searchNode" placeholder="输入人物姓名筛选">
       <button onclick="searchNode()">筛选人物</button>
       <br>
-      <input type="text" id="startNode" placeholder="起点人物">
+      <input type="text" id="startNode" list="characterOptions" placeholder="起点人物">
       <input type="text" id="endNode" placeholder="终点人物">
       <button onclick="searchPath()">查询关系路径</button>
       <button onclick="location.reload()">重置图谱</button>
@@ -42,7 +42,7 @@
         <!-- 动态内容会在这里 -->
       </div>
     </div>
-    <img id="personPhoto" src="bg.jpg" alt="人物照片" >
+    <img id="personPhoto" src="bg.jpg" alt="人物照片">
   </div>
 
   <!-- 背景音乐播放器 -->
